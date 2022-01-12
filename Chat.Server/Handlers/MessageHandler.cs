@@ -1,4 +1,4 @@
-﻿using Chat.Server.SocketsManager;
+using Chat.Server.SocketsManager;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +49,7 @@ namespace Chat.Server.Handlers
 
             if (messageObject.Name == null)
             {
-                messageObject.Name = _ID_Name;
+                messageObject.Name = "ANANIMUS";
                 messageObject.Time = DateTime.Now;
             }
 
@@ -62,15 +62,15 @@ namespace Chat.Server.Handlers
 
             };
 
-
+            dataRep.Save(msg);
             var Msgs = dataRep.GetDatas();
 
 
             // _name = " 123";
             await SendMessageToAll(messageObject.Time + " : " + messageObject.Name + " : " + messageObject.Text);
-            await SendMessageToAll(" !: server info: " + " idName: " + _ID_Name + " Nick: " + Msgs[Msgs.Count - 1].Nick + " " + "content:" + " " + Msgs[Msgs.Count - 1].Content + " " + " serverTime: " + Msgs[Msgs.Count - 1].Time);
+            await SendMessageToAll(" !: server info: " + " Nick: " + Msgs[Msgs.Count - 1].Nick + " " + "content:" + " " + Msgs[Msgs.Count - 1].Content + " " + " serverTime: " + Msgs[Msgs.Count - 1].Time);
             Log log = new Log();
-            log.Trace(" !: server info: " + " idName: " + _ID_Name + " Nick: " + Msgs[Msgs.Count - 1].Nick + " " + "content:" + " " + Msgs[Msgs.Count - 1].Content + " " + " serverTime: " + Msgs[Msgs.Count - 1].Time);
+            log.Trace(" !: server info: " + " Nick: " + Msgs[Msgs.Count - 1].Nick + " " + "content:" + " " + Msgs[Msgs.Count - 1].Content + " " + " serverTime: " + Msgs[Msgs.Count - 1].Time);
             // await SendMessageToAll(messageObject.Text);
         }
 
